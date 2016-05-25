@@ -1,0 +1,24 @@
+Matlab code for MCMC inference of MJP and preference-MJP models in paper:
+
+"Markov-modulated Marked Poisson Processes for Check-in Data",
+by Jiangwei Pan, Vinayak Rao, Pankaj K. Agarwal, Alan E. Gelfand,
+in ICML 2016.
+
+The code uses check-in data as an example.  The models can be applied to 
+other types of time-stamped sequence data.
+
+Inference:
+- run mjp_mcmc.m for MJP
+- run preference_mjp_mcmc.m for preference-MJP
+
+Both files uses parallelization with "parfor" when calling "sample_mjp_path"
+function.  You can replace it with "for" if you do not want parallelization.
+
+Visualization: after inference, visualize the states by running 
+visualize_states.m
+
+Input format:
+- contains cell array "data = cell(U, 1)" of U sequences
+- data{u}.loc: 2 * n vector, locations (lon, lat) of observations
+- data{u}.t: 1 * n vector, times of observations (normalized in [0,1])
+- see "sample_checkin_data.mat" for an example
